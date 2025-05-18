@@ -23,5 +23,10 @@ This project focuses purely on **UI components and animations**, without involvi
 - **Tailwind CSS**
 - **Framer Motion**
 
+## Live Demo
+
+Check out the live project here:  
+[Refocus Clone React](https://kalash930.github.io/refocus-clone-react/)
+
 ## 📁 Project Structure
 
