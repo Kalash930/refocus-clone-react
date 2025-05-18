@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+// Replace 'my-vite-react-app' with your actual repo name
 export default defineConfig({
+  base: '/refocus-clone-react/',
   plugins: [react()],
 })
