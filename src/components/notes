@@ -1,0 +1,144 @@
+there is the breakdown of the website........
+
+1. first of all we analyze the structure of the website (what components we need)
+   * App.jsx
+   * Navbar.jsx
+   * Work.jsx
+   * Stripes.jsx
+     *Strip.jsx
+   * Products.jsx
+     *Product.jsx
+   *Marquees.jsx
+     *Marquee.jsx
+   *Cards.jsx
+     *Card.jsx
+   *footer.jsx          
+
+(Note :- our website is a dark theme website so we have to declare it in App.jsx where the div which wrapped the whole website have the width full, height full, background dark, text color white)
+ 
+2. Navbar.jsx   (now we have to breakdown the navbar component)
+  use of navbar component:  we use this component to build the navbar of the component
+  * return div , which is wrapped the navbar .......
+     width: max-width-980px
+     mx-auto (because we want the nav bar width wise in center)
+  * nav bar me do part hai ....
+  1st part me we have a array which contain the name home , work,next..etc in sabko ek div me rakh denge  bich me ek element ko blank rakh denge ..... use kevl border denge right ka jo ki line ka work krega .........
+
+  2nd part me ek button hai jo ki button component se li gyi hai
+  (dono part flex ki help se ek sath rakh denge)   
+
+****  main attraction in navbar is the dot which shows the work section is open 
+  (actually we have created a circle with the help of span tag)// importent:- choti chij ke liye span badi chij ke liye div use karlenge
+
+  we use some tailwind classes top make this  ( bg-green-500 shadow-[0_0_5px_2px_rgba(34,197,94,0.4)],animate-pulse ) and  
+ (
+       @keyframes blink {
+  0%, 20% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.dot-animation {
+  animation: blink 1s infinite;
+  display: inline-block;
+  font-weight: bold;
+}
+
+ )  use this in index.css 
+
+
+
+
+3. Work.jsx 
+  ( work.jsx me first of all ek heading hai use style kar denge ..... )
+  now the problem is work heading hai (text hai) select hoga ....we want ki koi select na kar paye....
+  so we put the tailwind class (select-none)// now ye select nhi hoga
+
+  *main attraction of work.jsx
+  (  hme scroll krte time images show karni h jo scrolling pr depend hai)
+
+  * first of all we have create a div jise work .js ke second div ke upr rakh denge absolute dekr jo ki work ke upr aajyega
+  now we have usetate where we have 
+  ( image url , image top , left position, ek is avtive property jo ki false hai sari images ki bydefault ...
+  map use karke images se sari images ko  jiski isactive true hai show karte jayenge
+
+  )
+
+  ( scroll ki relate me hme ab image ki isactive proprty true krni hai....
+  jiske liye hme framer motion ka use krna hoga
+
+  ab framer motion install karke , export karke
+
+  const { scrollYProgress } = useScroll();// ise karne ke baad
+
+
+
+  scrollYProgress.on("change", (data) => {
+		function imagesShow(arr) {
+			setImages((prev) =>
+				prev.map((item, index) =>
+					arr.indexOf(index) === -1
+						? { ...item, isActive: false }
+						: { ...item, isActive: true }
+				)
+			);
+		}
+
+		switch (Math.floor(data * 100)) {
+			case 0:
+				imagesShow([]);
+				break;
+			case 1:
+				imagesShow([0]);
+				break;
+			case 2:
+				imagesShow([0, 1]);
+				break;
+			case 3:
+				imagesShow([0, 1, 2]);
+				break;
+			case 4:
+				imagesShow([0, 1, 2, 3]);
+				break;
+			case 5:
+				imagesShow([0, 1, 2, 3, 4]);
+				break;
+            case 6:
+                imagesShow([0,1,2,3,4,5]) ;
+                break;
+		}
+	});
+)
+
+// isme hmne ek scrollprogress.on()
+isme hme ek  change aur callback function daalna hai 
+aur is call back function me ek switch chalana hai
+switch ka progress scrollprogress ko percent me bdlkr uske according chalega
+ case 0 me khali arr pass kara jyega jo array ek imageshow function ko receive hoga 
+ imageshow me setimages function chlega 
+
+
+
+ setImages((prev) =>
+				prev.map((item, index) =>
+					arr.indexOf(index) === -1
+						? { ...item, isActive: false }
+						: { ...item, isActive: true }
+				)
+			);
+prev value me map lagakr fir se callback chlega ....jo array pass ki gyi hai ager usme index nhi hai sari is active false hogi   but agr index hai 0 hai y 1 hai y aur h to array ke item true ho jyenge aur dikhenge ///
+
+
+
+4. stripes.jsx (ye usuall ek stripes hai jisme ek data hai jiske according strip component use hua hai)
+
+
+5. products.jsx and product.jsx
+(first of all hmne  products.jsx me hmne product name ki array bnyi jisme hmne product ki properties di aur product bnakr style karke structure bna diya .....)
+
+
+****main attraction of projects( when we have scroll there is 5 product every product shows have image accordint to curser movement on there   )
+
+breakdown this:-
+
+use flattermotion....
